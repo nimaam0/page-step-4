@@ -1,6 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import { itemsData } from "./items";
+
+export interface item {
+  id: number;
+  src:string;
+  alt:string;
+  fill:boolean;
+}
 
 export default function CardComponent() {
   return (
@@ -25,23 +33,23 @@ export default function CardComponent() {
       
       {/* لیست کارت‌ها */}
       <div className="w-full flex flex-wrap justify-center items-center gap-10 mx-auto mt-10">
-        {[1, 2, 3].map((item) => (
+        {itemsData.map((item) => (
           <div
-            key={item}
+            key={item.id}
             className="min-w-80 flex-1 h-[305px] bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden flex flex-col shadow-lg"
           >
             <div className="w-full h-44 relative">
               <Image
-                src="image1.svg"
-                alt="Card Image"
-                layout="fill"
+                src={item.src}
+                alt={item.alt}
+                fill={item.fill}
                 objectFit="cover"
                 className="rounded-t-[16px]"
               />
             </div>
             <div className="p-4 flex flex-col flex-grow">
               <p className="text-white text-lg pr-3">
-                قالب ویژه شماره {item} آی پرتال
+                قالب ویژه شماره {item.id} آی پرتال
               </p>
               <div className="flex justify-center mt-auto gap-4 flex-row">
               <button className="flex flex-row items-center text-center bg-[#4338CA] text-white text-sm font-normal leading-6 tracking-[0px] py-1 px-3 gap-1 rounded-lg w-[70%]">
